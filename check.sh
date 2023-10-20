@@ -206,10 +206,10 @@ local_ipv4_asterisk=$(awk -F"." '{print $1"."$2".*.*"}' <<<"${local_ipv4}")
 local_ipv6=$(curl $curlArgs -6 -s --max-time 20 cloudflare.com/cdn-cgi/trace | grep ip | awk -F= '{print $2}')
 local_ipv6_asterisk=$(awk -F":" '{print $1":"$2":"$3":*:*"}' <<<"${local_ipv6}")
 local_isp4=$(curl $curlArgs -s -4 --max-time 10 --user-agent "${UA_Browser}" "https://api.ip.sb/geoip/" | jq '.organization' | tr -d '"' &)
-local_isp4type=$(curl $curlArgs -s -4 --max-time 10 --user-agent "${UA_Browser}" "https://ipinfo.io/widget/demo/${local_ipv4}" | jq '.data.asn.type' | tr -d '"' &)
+local_isp4type=$(curl $curlArgs --referer "https://ipinfo.io/" -s -4 --max-time 10 --user-agent "${UA_Browser}" "https://ipinfo.io/widget/demo/${local_ipv4}" | jq '.data.asn.type' | tr -d '"' &)
 local_isp4country=$(curl $curlArgs -s -4 --max-time 10 --user-agent "${UA_Browser}" "https://api.ip.sb/geoip/" | jq '.country' | tr -d '"' &)
 local_isp6=$(curl $curlArgs -s -6 --max-time 10 --user-agent "${UA_Browser}" "https://api.ip.sb/geoip/" | jq '.organization' | tr -d '"' &)
-local_isp6type=$(curl $curlArgs -s -6 --max-time 10 --user-agent "${UA_Browser}" "https://ipinfo.io/widget/demo/${local_ipv6}" | jq '.data.asn.type' | tr -d '"' &)
+local_isp6type=$(curl $curlArgs --referer "https://ipinfo.io/" -s -6 --max-time 10 --user-agent "${UA_Browser}" "https://ipinfo.io/widget/demo/${local_ipv6}" | jq '.data.asn.type' | tr -d '"' &)
 local_isp6country=$(curl $curlArgs -s -6 --max-time 10 --user-agent "${UA_Browser}" "https://api.ip.sb/geoip/" | jq '.country' | tr -d '"' &)
 
 ShowRegion() {
