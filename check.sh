@@ -3734,6 +3734,7 @@ function Global_UnlockTest() {
         GameTest_Steam ${1} &
         MediaUnlockTest_Google ${1} &
         MediaUnlockTest_Tiktok ${1} &
+	Openai_UnlockTest ${1} &
         )
     else
         local result=$(
@@ -3752,10 +3753,11 @@ function Global_UnlockTest() {
         #MediaUnlockTest_Instagram.Music ${1}
         # GameTest_Steam ${1} &
         MediaUnlockTest_Google ${1} &
+	Openai_UnlockTest ${1} &
         )
     fi
     wait
-    local array=("Dazn:" "HotStar:" "Disney+:" "Netflix:" "YouTube Premium:" "Amazon Prime Video:" "TVBAnywhere+:" "iQyi Oversea:" "Viu.com:" "Tiktok" "YouTube CDN:" "Google" "YouTube Region:" "Netflix Preferred CDN:" "Spotify Registration:" "Steam Currency:")
+    local array=("Dazn:" "HotStar:" "Disney+:" "Netflix:" "YouTube Premium:" "Amazon Prime Video:" "TVBAnywhere+:" "iQyi Oversea:" "Viu.com:" "Tiktok" "YouTube CDN:" "Google" "YouTube Region:" "Netflix Preferred CDN:" "Spotify Registration:" "Steam Currency:" "ChatGPT:")
     echo_Result ${result} ${array}
     echo "======================================="
 }
