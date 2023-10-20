@@ -209,6 +209,7 @@ local_isp4=$(curl $curlArgs -s -4 --max-time 10 --user-agent "${UA_Browser}" "ht
 local_isp4type=$(curl $curlArgs -s -4 --max-time 10 --user-agent "${UA_Browser}" --referer "https://ipinfo.io/" "https://ipinfo.io/widget/demo/${local_ipv4}" | jq '.data.asn.type' | tr -d '"' &)
 local_isp4country=$(curl $curlArgs -s -4 --max-time 10 --user-agent "${UA_Browser}" "https://api.ip.sb/geoip/" | jq '.country' | tr -d '"' &)
 local_isp6=$(curl $curlArgs -s -6 --max-time 10 --user-agent "${UA_Browser}" "https://api.ip.sb/geoip/" | jq '.organization' | tr -d '"' &)
+sleep 2
 local_isp6type=$(curl $curlArgs -s -6 --max-time 10 --user-agent "${UA_Browser}" --referer "https://ipinfo.io/" "https://ipinfo.io/widget/demo/${local_ipv6}" | jq '.data.asn.type' | tr -d '"' &)
 local_isp6country=$(curl $curlArgs -s -6 --max-time 10 --user-agent "${UA_Browser}" "https://api.ip.sb/geoip/" | jq '.country' | tr -d '"' &)
 
