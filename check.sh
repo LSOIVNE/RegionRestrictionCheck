@@ -3920,10 +3920,10 @@ function Openai_UnlockTest() {
     fi
 
     local result1=$(echo "$tmpresult" | grep 'location' )
+    local region1=$(curl $curlArgs -${1} --user-agent "${UA_Browser}" -SsL --max-time 10 "https://chat.openai.com/cdn-cgi/trace" 2>&1 | grep "loc=" | awk -F= '{print $2}')
     if [ ! -n "$result1" ]; then
-    	echo -n -e "\r Openai:\t\t\t\t${Font_Red}No${Font_Suffix}\n"
+    	echo -n -e "\r Openai:\t\t\t\t${Font_Red}No (Region: $region1)${Font_Suffix}\n"
     else
-    	local region1=$(curl $curlArgs -${1} --user-agent "${UA_Browser}" -SsL --max-time 10 "https://chat.openai.com/cdn-cgi/trace" 2>&1 | grep "loc=" | awk -F= '{print $2}')
         echo -n -e "\r Openai:\t\t\t\t${Font_Green}Yes (Region: ${region1})${Font_Suffix}\n"
     fi
 
